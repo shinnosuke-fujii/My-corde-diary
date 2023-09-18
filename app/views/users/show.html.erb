@@ -1,0 +1,56 @@
+<div class="mcd7">
+  <%= image_tag @user.image_url, size: "250x200" if @user. image? %>
+  <p>名前 : <%= @user.name %></p>
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>プロフィール : <%= @user.profile %></p>
+  <% if current_user.id == @user.id %>
+    <%= link_to "編集する", edit_user_registration_path %>
+  <% end %>
+</div>
+
+<div class="mcd8">
+<h2>ユーザーの投稿一覧</h2>
+</div>
+
+<div class="mcd9">
+  <% @user.mcds.each do |t| %>
+  <div class="mcd6">
+    <h5><%= t.user.name %></h5>
+    <h5><%= t.main_item %></h5>
+    <h5><%= t.about %></h5>
+    <h5><%= image_tag t.image_url, size: "250x200" if t.image? %></h5>
+  </div>
+  <% end %>
+</div>
+
+    <% @user.blogs.each do |blog| %>
+  <tr>
+  <td><%= blog.title %></td>
+  <td><%= blog.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+  <td><%= link_to 'Show', blog %></td>
+  <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
+  <td><%= link_to 'Destroy',blog_path(blog.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<%= month_calendar events: @user.blogs do |date, blogs| %>
+  <%= date.day %>
+
+  <% blogs.each do |blog| %>
+    <div>
+      <%= link_to blog.title, blog %>
+    </div>
+  <% end %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+<% if user_signed_in? %>
+<% end %>

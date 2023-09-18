@@ -1,0 +1,9 @@
+<%= form_for @mcd do |f| %>
+    <%= f.label :about %>
+    <%= f.text_field :about, :size => 140 %>
+    <%= f.label :main_item %>
+    <%= f.text_field :main_item, :size => 140 %>  
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f.submit "編集する" %>
+<% end %>

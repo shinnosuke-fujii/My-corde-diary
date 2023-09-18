@@ -1,0 +1,36 @@
+
+<h3>コーデ詳細</h3>
+<div class="mcd">
+  <p><%= @mcd.about %></p>
+  <p><%= @mcd.main_item %></p>
+  <%= image_tag @mcd.image_url, size: "250x200" if @mcd.image? %>
+  <% if user_signed_in? %>
+    <% if current_user.already_liked?(@mcd) %>
+      <%= link_to mcd_like_path(@mcd), method: :delete do %>
+        <i class="fa-solid fa-shirt"></i><%= @mcd.likes.count %>
+      <% end %>
+    <% else %>
+      <%= link_to mcd_likes_path(@mcd), method: :post do %>
+        <i class="fa-solid fa-shirt"></i><%= @mcd.likes.count %>
+      <% end %>
+    <% end %>
+  <% else %>
+  <i class="fa-solid fa-shirt"></i><%= @mcd.likes.count %>
+  <% end %>
+
+  <% @mcd.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+  <% end %>
+
+  <%= link_to "編集する", edit_mcd_path(@mcd.id) %>
+
+</div>
+
+
+
+<h2>いいねしたユーザー</h2>
+<% @mcd.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+

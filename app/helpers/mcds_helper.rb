@@ -1,0 +1,2 @@
+module McdsHelper
+end

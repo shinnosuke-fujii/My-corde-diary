@@ -1,0 +1,49 @@
+
+<div class="mcd4">
+  <h1>一覧ページ</h1>
+</div>
+
+<div class="mcds-container">
+  
+  <h4>タグ一覧</h4>
+  <div class="mcd2">
+    <%= form_tag({controller:"mcds",action:"index"}, method: :get) do %>
+      <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      <% end %>
+      <%= submit_tag '検索' %>
+    <% end %>
+  </div>
+  
+  <div class="mcd1">
+    <% @mcds.each do |t| %>
+      <div class="mcd"> 
+        <h5><%= image_tag t.image_url, size: "250x200" if t.image? %></h5>
+        <h5><%= t.user.name %></h5>
+        <h5><%= t.user.email %> </h5>
+        <h5><%= t.main_item %></h5>
+        <h5><%= t.about %></h5>
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+            <%= link_to mcd_like_path(id: t.id, mcd_id: t.id), method: :delete do %>
+              <i class="fa-solid fa-shirt"></i><%= t.likes.count %>
+            <% end %>
+        <% else %>
+            <%= link_to mcd_likes_path(id: t.id, mcd_id: t.id), method: :post do %>
+              <i class="fa-solid fa-shirt"></i><%= t.likes.count %>
+            <% end %>
+        <% end %>
+      <% else %>
+        <i class="fa-solid fa-shirt"></i><%= t.likes.count %>
+      <% end %>
+        
+          <a><%= link_to "詳細へ", mcd_path(t.id) %></a>
+          <a><%= link_to "編集する", edit_mcd_path(t.id) %></a>
+          <a><%= button_to "削除する", mcd_path(t.id), method: :delete %></a>
+       
+      </div>
+    <% end %>
+  </div>
+  
+</div>
+
