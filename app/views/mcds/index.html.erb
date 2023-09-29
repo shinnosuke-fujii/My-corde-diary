@@ -3,10 +3,21 @@
   <h1>一覧ページ</h1>
 </div>
 
+<div class="top">
+  <h4>あなただけのコーデ日記を作ろう</h4>
+  <p>「この服いつ着たっけ...」「最近この服着てないかも...」</p>
+  <p>そんな悩みは日記を書くことで解決できるかもしれません。</p>
+</div>
+
+<div class="top2">
+ <h4>おしゃれしたいけどコーデを考えるのは面倒くさい</h4>
+ <p>そんな悩みを解決するためにコーデを記録しましょう</p>
+</div>
 <div class="mcds-container">
   
-  <h4>タグ一覧</h4>
+  
   <div class="mcd2">
+   <h4>tags</h4>
     <%= form_tag({controller:"mcds",action:"index"}, method: :get) do %>
       <% Tag.all.each do |t| %>
         <li><%= check_box :tag_ids, t.name %><%= t.name %></li>

@@ -1,5 +1,6 @@
-<h1>(自分の題名)</h1>
-<h3>新規投稿ページ</h3>
+<div class="field1">
+  <h2>新規投稿ページ</h2>
+</div>
 <%= form_for @mcd do |f| %>
 
   <div class="field">
@@ -27,8 +28,9 @@
           </div>
       <% end %>
   </div>
-  
-  <%= f.submit "投稿する" %>
+  <div class="field2">
+   <%= f.submit "投稿する" %>
+  </div>
 <% end %>
 
 

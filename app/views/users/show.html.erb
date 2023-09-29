@@ -5,6 +5,7 @@
   <p>プロフィール : <%= @user.profile %></p>
   <% if current_user.id == @user.id %>
     <%= link_to "編集する", edit_user_registration_path %>
+    <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %> 
   <% end %>
 </div>
 

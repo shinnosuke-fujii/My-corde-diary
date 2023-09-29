@@ -23,8 +23,8 @@
        <li><h1><%= link_to"カレンダー", blogs_path %></h1></li>
        <li><h1><%= link_to "マイページへ", user_path(current_user.id) %></h1></li>
       <% else %>
-       <li><%= button_to "新規登録", new_user_registration_path %></li>
-       <li><%= button_to "ログイン", new_user_session_path %></li>
+       <li><%= link_to "新規登録", new_user_registration_path %></li>
+       <li><%= link_to "ログイン", new_user_session_path %></li>
       <% end %>
      </ul>
     </div>
